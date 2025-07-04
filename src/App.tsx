@@ -7,7 +7,7 @@ function App() {
     <div>
       <Navbar />
 
-      <div className="max-w-7xl mx-auto px-6 min-h-screen">
+      <div className=" min-h-screen overflow-x-hidden">
         {/* inspect tool- navbar height = 68px + footer height 164px = 232px */}
         <Outlet />
       </div>

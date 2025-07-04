@@ -1,7 +1,7 @@
 import BookTable from "@/components/BookTable";
 import { Button } from "@/components/ui/button";
 import { useGetBooksQuery } from "@/redux/api/baseApi";
-import BannerImg from "@/assets/banner.jpg";
+// import BannerImg from "@/assets/banner.jpg";
 import { Link } from "react-router";
 import { useState } from "react";
 import { MoveLeft, MoveRight } from "lucide-react";
@@ -13,6 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import Banner from "@/components/Banner";
 
 const Books = () => {
   const [page, setPage] = useState(1);
@@ -51,10 +52,12 @@ const Books = () => {
 
   return (
     <div>
-      <div
+      {/* <div
         className="w-full h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px] bg-cover bg-center rounded-xl my-6 shadow-2xl shadow-blue-950"
         style={{ backgroundImage: `url(${BannerImg})` }}
-      ></div>
+      ></div> */}
+      {/* banner */}
+      <Banner/>
 
       <div className="flex justify-between items-center my-6">
         <h1 className="font-medium">All Books</h1>
@@ -128,7 +131,7 @@ const Books = () => {
           className="border-none"
           onClick={() => setPage((prev) => prev + 1)}
         >
-          {" "}
+         
           Next
           <MoveRight className="w-4 h-4" />
         </Button>

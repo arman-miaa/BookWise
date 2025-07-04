@@ -2,7 +2,7 @@ import { Link, NavLink } from "react-router";
 import { ModeToggle } from "./mode-toggle";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-
+import logo from "../assets/logo.jpg"
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -16,12 +16,15 @@ const Navbar = () => {
     <nav className="sticky top-0 z-50 bg-white dark:bg-gray-900 shadow-md backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-gray-900/70">
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo */}
-        <Link
-          to="/"
-          className="text-xl font-bold text-gray-900 dark:text-white"
-        >
-          📚 Library
-        </Link>
+        <div className="flex items-center gap-2">
+          <img src={logo} alt="logo" className="w-12 h-12 object-cover" />
+          <Link
+            to="/"
+            className="text-xl font-bold text-gray-900 dark:text-white"
+          >
+            BookWish
+          </Link>
+        </div>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-6">
