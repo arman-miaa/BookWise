@@ -15,7 +15,7 @@ import book7 from "../assets/book7.jpg"
 const Banner = () => {
   return (
     <div
-      className="h-[calc(100vh-71px)] w-full bg-cover bg-center relative flex items-center mb-12 "
+      className="h-[calc(100vh-63px)] w-full bg-cover bg-center relative flex items-center mb-12 "
       style={{
         backgroundImage: `url(${bannerImg})`,
       }}
