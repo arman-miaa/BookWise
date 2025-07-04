@@ -13,7 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import Banner from "@/components/Banner";
+
 
 const Books = () => {
   const [page, setPage] = useState(1);
@@ -52,12 +52,8 @@ const Books = () => {
 
   return (
     <div>
-      {/* <div
-        className="w-full h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px] bg-cover bg-center rounded-xl my-6 shadow-2xl shadow-blue-950"
-        style={{ backgroundImage: `url(${BannerImg})` }}
-      ></div> */}
-      {/* banner */}
-      <Banner/>
+
+    
 
       <div className="flex justify-between items-center my-6">
         <h1 className="font-medium">All Books</h1>

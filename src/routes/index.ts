@@ -1,18 +1,20 @@
 
 import { createBrowserRouter } from "react-router";
-import App from "../App";
+
 import Books from "../pages/Books";
 import AddBook from "@/pages/AddBook";
 import BorrowSummary from "@/pages/BorrowSummary";
+import MainLayout from "@/layout/MainLayout";
+import Home from "@/pages/Home";
 
 const router = createBrowserRouter([
     {
         path: '/',
-        Component: App,
+        Component: MainLayout,
         children: [
             {
                 index: true,
-                Component: Books
+                Component: Home
             },
             {
                 path: 'books',
