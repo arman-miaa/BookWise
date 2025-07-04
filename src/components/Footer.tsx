@@ -1,41 +1,54 @@
+import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 import logo from "../assets/logo.jpg";
 
 const Footer = () => {
   return (
-    <footer className="bg-black mt-16 text-white py-10">
-      <div className="container mx-auto px-4 flex flex-col items-center justify-center space-y-4">
+    <footer className="bg-black text-white py-10 mt-20">
+      <div className="container mx-auto px-4 flex flex-col items-center text-center space-y-6">
         {/* Logo */}
         <img
           src={logo}
           alt="BookWish Logo"
-          className="w-16 h-16 rounded-full shadow-lg"
+          className="w-16 h-16 rounded-full shadow-lg border-2 border-white"
         />
 
-        {/* Title & Description */}
-        <div className="text-center">
-          <h2 className="text-xl font-bold">BookWish</h2>
-          <p className="text-sm text-gray-100">
-            Providing reliable tech since 1992
+        {/* Brand Title & Description */}
+        <div>
+          <h2 className="text-2xl font-extrabold tracking-wide">BookWish</h2>
+          <p className="text-sm text-gray-300 mt-1">
+            Empowering readers since 1992
           </p>
         </div>
 
-        {/* Copyright */}
-        <p className="text-xs text-gray-200">
-          © {new Date().getFullYear()} BookWish — All rights reserved.
-        </p>
-
-        {/* Social Icons Placeholder (Optional) */}
-        <div className="flex gap-4">
-          <a href="#" aria-label="Facebook" className="hover:text-red-400">
-            📘
+        {/* Social Media Icons */}
+        <div className="flex gap-5 text-lg">
+          <a
+            href="#"
+            aria-label="Facebook"
+            className="hover:text-blue-400 transition"
+          >
+            <FaFacebookF />
           </a>
-          <a href="#" aria-label="Twitter" className="hover:text-red-400">
-            🐦
+          <a
+            href="#"
+            aria-label="Twitter"
+            className="hover:text-sky-400 transition"
+          >
+            <FaTwitter />
           </a>
-          <a href="#" aria-label="Instagram" className="hover:text-red-400">
-            📸
+          <a
+            href="#"
+            aria-label="Instagram"
+            className="hover:text-pink-400 transition"
+          >
+            <FaInstagram />
           </a>
         </div>
+
+        {/* Copyright */}
+        <p className="text-xs text-gray-400">
+          © {new Date().getFullYear()} BookWish. All rights reserved.
+        </p>
       </div>
     </footer>
   );

@@ -17,10 +17,10 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <img src={logo} alt="logo" className="w-12 h-12 object-cover" />
+          <img src={logo} alt="logo" className="w-8 md:w-10 h-8 md:h-10 cursor-pointer object-cover" />
           <Link
             to="/"
-            className="text-xl font-bold text-gray-900 dark:text-white"
+            className="md:text-xl font-bold text-gray-900 dark:text-white"
           >
             BookWish
           </Link>
@@ -34,8 +34,8 @@ const Navbar = () => {
               to={link.path}
               className={({ isActive }) =>
                 isActive
-                  ? "text-blue-600 dark:text-yellow-300 underline font-semibold"
-                  : "text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-yellow-300 transition-colors"
+                  ? "text-blue-600 dark:text-yellow-300  font-semibold"
+                  : " dark:text-gray-200 hover:text-blue-600 dark:hover:text-yellow-300 transition-colors"
               }
             >
               {link.label}
@@ -43,7 +43,9 @@ const Navbar = () => {
           ))}
           <ModeToggle />
         </div>
-
+        <div className="md:hidden">
+          <ModeToggle />
+        </div>
         {/* Mobile Toggle Button */}
         <button
           className="md:hidden text-gray-700 dark:text-gray-200"
@@ -64,13 +66,12 @@ const Navbar = () => {
               className={({ isActive }) =>
                 isActive
                   ? "block text-blue-600 dark:text-yellow-300 underline font-semibold"
-                  : "block text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-yellow-300 transition-colors"
+                  : "block  dark:text-gray-200 hover:text-blue-600 dark:hover:text-yellow-300 transition-colors"
               }
             >
               {link.label}
             </NavLink>
           ))}
-          <ModeToggle />
         </div>
       )}
     </nav>

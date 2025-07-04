@@ -15,7 +15,7 @@ import book7 from "../assets/book7.jpg"
 const Banner = () => {
   return (
     <div
-      className="h-[calc(100vh-71px)] w-full bg-cover bg-center relative flex items-center"
+      className="h-[calc(100vh-71px)] w-full bg-cover bg-center relative flex items-center mb-12 "
       style={{
         backgroundImage: `url(${bannerImg})`,
       }}
@@ -27,10 +27,10 @@ const Banner = () => {
       <div className="relative z-10 flex flex-col-reverse md:flex-row justify-between items-center w-full md:px-20 lg:px-40">
         {/* Left content */}
         <div className="text-white max-w-xl space-y-5">
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+          <h1 className="text-4xl md:text-6xl font-bold text-center md:text-left mt-4 md:mt-0 leading-tight">
             Discover Your Next Favorite Book
           </h1>
-          <p className="text-lg md:text-xl text-gray-200">
+          <p className="text-lg md:text-xl text-center md:text-left text-gray-200">
             A curated collection of stories, knowledge, and adventure. Explore
             the shelves with a swipe!
           </p>

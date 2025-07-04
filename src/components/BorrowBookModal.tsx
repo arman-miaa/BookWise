@@ -82,9 +82,9 @@ const BorrowBookModal = ({ bookId, open, onOpenChange }: BookModalProps) => {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px] overflow-y-auto max-h-[90vh]">
         <DialogHeader>
-          <DialogTitle>Borrow Book</DialogTitle>
-          <DialogDescription>
-            Choose how many copies you want and set a due date.
+          <DialogTitle className="md:text-2xl">Borrow Book</DialogTitle>
+          <DialogDescription className="text-black">
+            Set the number of copies and pick a due date.
           </DialogDescription>
         </DialogHeader>
 
@@ -188,11 +188,11 @@ const BorrowBookModal = ({ bookId, open, onOpenChange }: BookModalProps) => {
 
               <DialogFooter>
                 <DialogClose asChild>
-                  <Button variant="outline" type="button">
+                  <Button variant="outline" type="button" className="cursor-pointer">
                     Cancel
                   </Button>
                 </DialogClose>
-                <Button type="submit" disabled={isBorrowing}>
+                <Button type="submit" disabled={isBorrowing} className="bg-blue-500 hover:bg-blue-600 cursor-pointer" >
                   {isBorrowing ? "Borrowing..." : "Borrow Book"}
                 </Button>
               </DialogFooter>

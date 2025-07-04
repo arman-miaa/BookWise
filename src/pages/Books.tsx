@@ -1,7 +1,6 @@
 import BookTable from "@/components/BookTable";
 import { Button } from "@/components/ui/button";
 import { useGetBooksQuery } from "@/redux/api/baseApi";
-// import BannerImg from "@/assets/banner.jpg";
 import { Link } from "react-router";
 import { useState } from "react";
 import { MoveLeft, MoveRight } from "lucide-react";
@@ -14,12 +13,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-
 const Books = () => {
   const [page, setPage] = useState(1);
   const [sort, setSort] = useState("desc");
   const [genre, setGenre] = useState("");
-
   const limit = 10;
 
   const { data, error, isLoading } = useGetBooksQuery(
@@ -31,36 +28,40 @@ const Books = () => {
       filter: genre,
     },
     {
-      pollingInterval: 30000, // fetch every 30s
-      refetchOnFocus: true, //  when browser regains focus
-      refetchOnMountOrArgChange: true, //when args change (like page or genre)
-      refetchOnReconnect: true, // when internet reconnects
+      pollingInterval: 30000,
+      refetchOnFocus: true,
+      refetchOnMountOrArgChange: true,
+      refetchOnReconnect: true,
     }
   );
-  //   console.log(data);
+
   const books = data?.data || [];
   const totalPages = data?.meta?.totalPages || 1;
-  //   console.log("Books", books);
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-[100vh]">
+      <div className="flex justify-center items-center h-screen">
         <Loader />
       </div>
     );
   }
 
   return (
-    <div>
-
-    
-
-      <div className="flex justify-between items-center my-6">
-        <h1 className="font-medium">All Books</h1>
+    <div className="px-4 md:px-10 py-10">
+      {/* Header */}
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-2xl md:text-3xl font-bold text-gray-800">
+          📘 All Books
+        </h1>
+        <Link to="/create-book">
+          <Button className="bg-blue-500 hover:bg-blue-600 cursor-pointer text-white">
+            ➕ Add Book
+          </Button>
+        </Link>
       </div>
 
-      <div className="flex flex-wrap md:justify-start gap-4 items-center mb-6">
-        {/* Sort by */}
+      {/* Filters */}
+      <div className="flex flex-wrap gap-4 mb-8 items-center">
         <Select onValueChange={(value) => setSort(value)} defaultValue="desc">
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Sort by date" />
@@ -71,14 +72,9 @@ const Books = () => {
           </SelectContent>
         </Select>
 
-        {/* Filter by Genre */}
         <Select
           onValueChange={(value) => {
-            if (value === "ALL") {
-              setGenre(""); //clears filter
-            } else {
-              setGenre(value);
-            }
+            setGenre(value === "ALL" ? "" : value);
           }}
         >
           <SelectTrigger className="w-[180px]">
@@ -94,17 +90,14 @@ const Books = () => {
             <SelectItem value="FANTASY">Fantasy</SelectItem>
           </SelectContent>
         </Select>
-
-        <Link to="/create-book" className="ml-auto">
-          <Button className="bg-blue-400 hover:bg-blue-500 ">Add Books</Button>
-        </Link>
       </div>
 
-      {error && <p>Error fetching books</p>}
-      {books?.length > 0 ? (
+      {/* Table or Message */}
+      {error && <p className="text-red-500">❌ Error fetching books</p>}
+      {books.length > 0 ? (
         <BookTable books={books} />
       ) : (
-        !isLoading && <p>No books found.</p>
+        <p className="text-center text-gray-500">No books found.</p>
       )}
 
       {/* pagination */}
@@ -127,7 +120,6 @@ const Books = () => {
           className="border-none"
           onClick={() => setPage((prev) => prev + 1)}
         >
-         
           Next
           <MoveRight className="w-4 h-4" />
         </Button>

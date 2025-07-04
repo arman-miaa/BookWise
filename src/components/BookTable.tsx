@@ -8,12 +8,12 @@ import {
 } from "@/components/ui/table";
 import type { IBook } from "@/types";
 import {
-  Delete,
-  Edit,
-  CheckCircle,
-  XCircle,
-  BookUser,
-  ListCheck,
+  Trash2,
+  PencilLine,
+  Check,
+  X,
+  Info,
+  BookOpenCheck,
 } from "lucide-react";
 import { useState } from "react";
 import BookDetailsModal from "./BookDetailsModal";
@@ -47,22 +47,20 @@ const BookTable = ({ books }: { books: IBook[] }) => {
     <>
       <Table>
         <TableHeader>
-          <TableRow>
-            <TableHead className="">Title</TableHead>
-            <TableHead>Author</TableHead>
-            <TableHead>Genre</TableHead>
-            <TableHead>ISBN</TableHead>
-            <TableHead>Copies</TableHead>
-            <TableHead>Availability</TableHead>
-            <TableHead>Actions</TableHead>
+          <TableRow className="md:text-base bg-gray-100">
+            <TableHead>📖 Title</TableHead>
+            <TableHead>✍️ Author</TableHead>
+            <TableHead>🎨 Genre</TableHead>
+            <TableHead>🔢 ISBN</TableHead>
+            <TableHead>📚 Copies</TableHead>
+            <TableHead>✅ Status</TableHead>
+            <TableHead>⚙️ Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {books.map((book) => (
-            <TableRow key={book._id} className="my-10">
-              <TableCell className="font-medium py-4 md:py-6">
-                {book.title}
-              </TableCell>
+            <TableRow key={book._id}>
+              <TableCell className="font-medium py-4">{book.title}</TableCell>
               <TableCell>{book.author}</TableCell>
               <TableCell>
                 {book.genre.charAt(0).toUpperCase() +
@@ -72,35 +70,33 @@ const BookTable = ({ books }: { books: IBook[] }) => {
               <TableCell>{book.copies}</TableCell>
               <TableCell>
                 {book.copies > 0 ? (
-                  <CheckCircle className="text-green-700 dark:text-green-500 w-4 h-4" />
+                  <Check className="text-green-600 w-5 h-5" />
                 ) : (
-                  <XCircle className="text-pink-700 w-4 h-4" />
+                  <X className="text-red-500 w-5 h-5" />
                 )}
               </TableCell>
               <TableCell>
-                <div className="flex items-center gap-3">
-                  {/* Edit with tooltip */}
+                <div className="flex items-center gap-4">
+                  {/* Edit */}
                   <Tooltip>
                     <TooltipTrigger>
-                      <Edit
-                        className="text-cyan-700 dark:text-cyan-500 hover:scale-90 transition w-4 h-4 cursor-pointer"
+                      <PencilLine
+                        className="text-blue-600 hover:scale-110 transition w-5 h-5 cursor-pointer"
                         onClick={() => {
                           setSelectedBookId(book._id);
                           setUpdateOpen(true);
                         }}
                       />
                     </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Edit Book</p>
-                    </TooltipContent>
+                    <TooltipContent>Edit Book</TooltipContent>
                   </Tooltip>
 
-                  {/* Delete a book */}
+                  {/* Delete */}
                   <AlertDialog>
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <AlertDialogTrigger asChild>
-                          <Delete className="text-pink-600 hover:scale-90 transition w-5 h-5 cursor-pointer" />
+                          <Trash2 className="text-rose-600 hover:scale-110 transition w-5 h-5 cursor-pointer" />
                         </AlertDialogTrigger>
                       </TooltipTrigger>
                       <TooltipContent>Delete Book</TooltipContent>
@@ -108,22 +104,20 @@ const BookTable = ({ books }: { books: IBook[] }) => {
 
                     <AlertDialogContent>
                       <AlertDialogHeader>
-                        <AlertDialogTitle>
-                          Are you absolutely sure?
-                        </AlertDialogTitle>
-                        <AlertDialogDescription>
-                          This action cannot be undone. This will permanently
-                          delete your book from our servers.
+                        <AlertDialogTitle>Confirm Deletion</AlertDialogTitle>
+                        <AlertDialogDescription className="text-black">
+                          Are you sure? This book will be permanently removed
+                          from the library.
                         </AlertDialogDescription>
                       </AlertDialogHeader>
                       <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
-                        <AlertDialogAction
+                        <AlertDialogCancel className="cursor-pointer">Cancel</AlertDialogCancel>
+                        <AlertDialogAction className="cursor-pointer bg-blue-500 hover:bg-blue-600"
                           onClick={async () => {
                             try {
                               await deleteBook(book._id).unwrap();
                               toast.success("Book deleted successfully!");
-                            } catch (err) {
+                            } catch (err: any) {
                               toast.error("Failed to delete the book.");
                             }
                           }}
@@ -134,30 +128,28 @@ const BookTable = ({ books }: { books: IBook[] }) => {
                     </AlertDialogContent>
                   </AlertDialog>
 
-                  {/* View/Details with tooltip */}
+                  {/* Details */}
                   <Tooltip>
                     <TooltipTrigger>
-                      <BookUser
-                        className="text-green-500 hover:scale-90 transition w-5 h-4 cursor-pointer"
+                      <Info
+                        className="text-indigo-600 hover:scale-110 transition w-5 h-5 cursor-pointer"
                         onClick={() => {
                           setSelectedBookId(book._id);
                           setDetailsOpen(true);
                         }}
                       />
                     </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Book Description</p>
-                    </TooltipContent>
+                    <TooltipContent>Book Details</TooltipContent>
                   </Tooltip>
 
-                  {/* borrow book */}
+                  {/* Borrow */}
                   <Tooltip>
                     <TooltipTrigger>
-                      <ListCheck
+                      <BookOpenCheck
                         className={cn(
-                          "transition w-5 h-4",
+                          "transition w-5 h-5",
                           book.copies > 0
-                            ? "text-yellow-500 hover:scale-90 cursor-pointer"
+                            ? "text-amber-500 hover:scale-110 cursor-pointer"
                             : "text-gray-400 cursor-not-allowed"
                         )}
                         onClick={() => {
@@ -168,9 +160,7 @@ const BookTable = ({ books }: { books: IBook[] }) => {
                         }}
                       />
                     </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Borrow Book</p>
-                    </TooltipContent>
+                    <TooltipContent>Borrow Book</TooltipContent>
                   </Tooltip>
                 </div>
               </TableCell>
@@ -179,18 +169,17 @@ const BookTable = ({ books }: { books: IBook[] }) => {
         </TableBody>
       </Table>
 
+      {/* Modals */}
       <BookDetailsModal
         bookId={selectedBookId}
         open={detailsOpen}
         onOpenChange={setDetailsOpen}
       />
-
       <BookUpdateModal
         bookId={selectedBookId}
         open={updateOpen}
         onOpenChange={setUpdateOpen}
       />
-
       <BorrowBookModal
         bookId={selectedBookId}
         open={borrowOpen}

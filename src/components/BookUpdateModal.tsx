@@ -35,19 +35,12 @@ const BookUpdateModal = ({ bookId, open, onOpenChange }: BookModalProps) => {
 
   const { data, isLoading, error } = useGetBookQuery(bookId, {
     skip: !bookId,
-    /* pollingInterval: 30000,
-    refetchOnFocus: true,
-    refetchOnMountOrArgChange: true,
-    refetchOnReconnect: true, */
+
   });
 
   const book = data?.data;
 
-  //   console.log("Book", book);
-
-  /* Problem 2: Form default values not showing
-  🔍 Why?
-  React Hook Form's defaultValues are set once on mount, and your book is fetched asynchronously. So: */
+ 
 
   const form = useForm({
     defaultValues: {
@@ -59,8 +52,7 @@ const BookUpdateModal = ({ bookId, open, onOpenChange }: BookModalProps) => {
       copies: book?.copies,
     },
   });
-  // This runs before book is loaded ⇒ values are undefined.
-  // Fix: Use reset() to populate values after fetch
+
   useEffect(() => {
     if (book) {
       form.reset({
@@ -83,13 +75,11 @@ const BookUpdateModal = ({ bookId, open, onOpenChange }: BookModalProps) => {
     );
   }
 
-  //   form.reset() is the correct way to update values after the form has been initialized.
 
   const onSubmit: SubmitHandler<FieldValues> = async (formData) => {
     if (!bookId) return;
     try {
-      //   const payload = { bookId, bookData: formData };
-      //   const res = await updateBook(payload).unwrap();
+ 
       await updateBook({ bookId, bookData: formData }).unwrap();
       onOpenChange(false);
       toast.success("Book Updated successfully");
@@ -109,10 +99,10 @@ const BookUpdateModal = ({ bookId, open, onOpenChange }: BookModalProps) => {
           {book && (
             <DialogContent className="sm:max-w-[425px] overflow-y-auto max-h-[90vh]">
               <DialogHeader>
-                <DialogTitle>Edit Book</DialogTitle>
-                <DialogDescription>
-                  Make changes to your book here. Click save when you&apos;re
-                  done.
+                <DialogTitle className="md:text-2xl">Edit Book</DialogTitle>
+                <DialogDescription className="text-gray-800">
+                  Update your book details below and click save to apply the
+                  changes.
                 </DialogDescription>
               </DialogHeader>
 

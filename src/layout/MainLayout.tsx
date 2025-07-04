@@ -8,7 +8,7 @@ const MainLayout = () => {
     <div>
       {" "}
       <Navbar />
-      <div className=" min-h-screen overflow-x-hidden">
+      <div className=" min-h-[calc(100vh-400px)] overflow-x-hidden">
         {/* inspect tool- navbar height = 68px + footer height 164px = 232px */}
         <Outlet />
       </div>

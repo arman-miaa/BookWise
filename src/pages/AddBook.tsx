@@ -15,7 +15,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useForm, type SubmitHandler } from "react-hook-form";
-import AddBookImg from "@/assets/add-book.jpg";
 import { useCreateBookMutation } from "@/redux/api/baseApi";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
@@ -29,7 +28,7 @@ const AddBook = () => {
     defaultValues: {
       title: "",
       author: "",
-      genre: "FICTION", // set a default valid option
+      genre: "FICTION",
       isbn: "",
       description: "",
       copies: 1,
@@ -48,32 +47,24 @@ const AddBook = () => {
     try {
       await createBook(bookData).unwrap();
       form.reset();
-      toast.success("Successfully Added The Book");
-      navigate("/");
+      toast.success("✅ Book added successfully!");
+      navigate("/books");
     } catch (error) {
       console.error("Error creating book", error);
-      toast.error("Something went wrong");
+      toast.error("❌ Something went wrong");
     }
   };
 
   return (
-    <div className="flex flex-col-reverse lg:flex-row gap-2 md:gap-10 items-center my-10">
-      <div className=" my-10 md:w-1/2 w-full">
-        <img
-          src={AddBookImg}
-          alt="Add a Book Banner"
-          className="w-full object-cover rounded-xl shadow-blue-950 shadow-2xl h-[200px] sm:h-[300px] md:h-[400px]"
-        />
-      </div>
+    <div className="flex justify-center items-center py-10 px-4 ">
+      <div className="w-full max-w-2xl bg-white dark:bg-slate-900 rounded-xl shadow-xl p-8 border border-gray-200 dark:border-slate-700">
+        <h1 className="text-3xl font-bold text-center mb-8 text-blue-500">
+          📘 Add a New Book
+        </h1>
 
-      <div className="w-full md:w-1/2 border shadow-xl shadow-blue-200 p-6 md:my-10 backdrop-blur-md border-white/10 rounded-xl">
-        <h1 className="font-bold text-2xl text-center py-6">Add a Book</h1>
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-8 max-w-xl mx-auto"
-          >
-            {/* title */}
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            {/* Title */}
             <FormField
               control={form.control}
               name="title"
@@ -81,13 +72,13 @@ const AddBook = () => {
                 <FormItem>
                   <FormLabel>📖 Title</FormLabel>
                   <FormControl>
-                    <Input placeholder="title" {...field} />
+                    <Input placeholder="Enter book title" {...field} />
                   </FormControl>
                 </FormItem>
               )}
             />
 
-            {/* author */}
+            {/* Author */}
             <FormField
               control={form.control}
               name="author"
@@ -95,25 +86,25 @@ const AddBook = () => {
                 <FormItem>
                   <FormLabel>👤 Author</FormLabel>
                   <FormControl>
-                    <Input placeholder="author" {...field} />
+                    <Input placeholder="Author's name" {...field} />
                   </FormControl>
                 </FormItem>
               )}
             />
 
-            {/* genre */}
+            {/* Genre */}
             <FormField
               control={form.control}
               name="genre"
               render={({ field }) => (
-                <FormItem className="w-full">
+                <FormItem>
                   <FormLabel>💠 Genre</FormLabel>
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
                     <FormControl>
-                      <SelectTrigger className="w-full">
+                      <SelectTrigger>
                         <SelectValue placeholder="Select a genre" />
                       </SelectTrigger>
                     </FormControl>
@@ -130,7 +121,7 @@ const AddBook = () => {
               )}
             />
 
-            {/* isbn */}
+            {/* ISBN */}
             <FormField
               control={form.control}
               name="isbn"
@@ -138,24 +129,24 @@ const AddBook = () => {
                 <FormItem>
                   <FormLabel>🔑 ISBN</FormLabel>
                   <FormControl>
-                    <Input type="text" placeholder="ISBN" {...field} />
+                    <Input placeholder="ISBN number" {...field} />
                   </FormControl>
                 </FormItem>
               )}
             />
 
-            {/* copies */}
+            {/* Copies */}
             <FormField
               control={form.control}
               name="copies"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>📂 Copies</FormLabel>
+                  <FormLabel>📦 Number of Copies</FormLabel>
                   <FormControl>
                     <Input
                       type="number"
                       min={1}
-                      placeholder="Enter a number"
+                      placeholder="e.g. 3"
                       {...field}
                     />
                   </FormControl>
@@ -163,32 +154,15 @@ const AddBook = () => {
               )}
             />
 
-            {/* availability */}
-            {/*  <FormField
-              control={form.control}
-              name="available"
-              render={({ field }) => (
-                <FormItem className="w-full">
-                  <FormLabel>▶️ Availability</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    // defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Select a availability" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="true">True</SelectItem>
-                      <SelectItem value="false">False</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </FormItem>
-              )}
-            /> */}
-
-            <Button type="submit">Submit</Button>
+            {/* Submit Button */}
+            <div className="text-center pt-4">
+              <Button
+                type="submit"
+                className="bg-blue-500 hover:bg-blue-600 cursor-pointer w-full md:w-1/2"
+              >
+                ➕ Add Book
+              </Button>
+            </div>
           </form>
         </Form>
       </div>

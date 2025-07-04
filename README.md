@@ -1,113 +1,114 @@
-# 📚 Library Management System – Frontend
 
-This is the **frontend** of a minimal Library Management System built with:
+-----
 
-- ⚛️ React + TypeScript
-- 🔁 Redux Toolkit + RTK Query
-- 🎨 Tailwind CSS
-- 🧩 ShadCN UI components
-- 💬 Toast Notifications
-- 💡 Optimistic UI Support (coming soon!)
+# 📚 BookWish – A Modern Library Management System (Frontend)
 
-It allows users to:
+**BookWish** is a sleek and minimal **Library Management System frontend** built with modern web technologies. It allows users to browse, manage, and borrow books – all in a fast and intuitive interface.
 
-- View books
-- Create, edit, and delete books
-- Borrow books with quantity and due date
-- View a borrow summary with total quantities
+-----
 
-> ✅ **No authentication required** – it's a publicly accessible app.
+## 🚀 Tech Highlights
 
----
+  * ⚛️ **React + TypeScript** – Robust, scalable UI
+  * ⚙️ **Redux Toolkit + RTK Query** – State & data management
+  * 🎨 **Tailwind CSS + ShadCN UI** – Modern, elegant styling
+  * 🔔 **Toast Notifications** – Instant user feedback
+  * ⚡ **Vite** – Fast build tool
+ 
+
+-----
 
 ## 🌐 Live Preview
 
-👉 [Live Frontend Site](https://redux-library-management-system-by.vercel.app/)
+🔗 [Live Site (frontend) – BookWish](https://bookwish3.netlify.app)  
+🔗 [Live Site (backend) – BookWish](https://library-management-api-beta-ten.vercel.app/api)
 
----
+-----
 
-## 🚀 Backend Repo
+## 🔗 Backend Repository
 
-🔗 [Backend GitHub Repository](https://github.com/alifa-ara-heya/Library-Management-API)
+  * **GitHub Repo**: [Backend](https://github.com/arman-miaa/library-management-api)
 
-[Backend Link](https://library-management-api-eta.vercel.app)
+-----
 
-## 🧠 Features
+## ✨ Features
 
 ### 📚 Book Management
 
-- Add a new book
-- Edit or delete existing books
-- Sort by date (newest/oldest)
-- Filter by genre
-- Responsive UI with loading states and error messages
+  * ➕ Add new books
+  * ✏️ Edit or 🗑️ delete existing ones
+  * 🔍 Filter by **genre**
+  * ⏱️ Sort by newest or oldest
+  * ✅ Responsive design, loading states, and clear error messages
 
-### 📝 Borrow a Book
+### 📖 Borrow Books
 
-- Select quantity and due date
-- Quantity validation (cannot exceed available copies)
-- Book marked unavailable if no copies left
-- Redirects to borrow summary page after success
+  * 📦 Select quantity and due date
+  * 🔒 Validation for available copies
+  * ❌ Books auto-marked unavailable if copies run out
+  * 🔄 Redirect to borrow summary upon success
 
 ### 📊 Borrow Summary
 
-- Aggregates borrow data via API
-- Displays book title, ISBN, and total quantity borrowed
+  * 📘 Shows borrowed books
+  * 🔢 Total quantity calculation
+  * 🔎 Displays title and ISBN clearly
 
----
+-----
 
-## 📦 Tech Stack
+## 📁 Folder Structure
 
-| Layer   | Tools                                      |
-| ------- | ------------------------------------------ |
-| UI      | React, TypeScript, Tailwind CSS, ShadCN UI |
-| State   | Redux Toolkit, RTK Query                   |
-| Forms   | React Hook Form                            |
-| UX      | react-hot-toast                            |
-| Routing | React Router V7                            |
-| Build   | Vite                                       |
+Based on your project screenshot:
 
----
+```
+bookwish-frontend/
+├── node_modules/         # Project dependencies
+├── public/               # Static assets (e.g., index.html, favicon)
+├── src/                  # All source code
+│   ├── assets/           # Static files like images, fonts, etc.
+│   ├── components/       # Reusable UI components
+│   ├── layout/           # Application layout components (e.g., Header, Footer)
+│   ├── lib/              # Utility functions, helpers
+│   ├── pages/            # Main pages/views of the application
+│   ├── providers/        # Context providers or global state wrappers
+│   ├── redux/            # Redux Toolkit setup, slices, and RTK Query API definitions
+│   ├── routes/           # Application route definitions
+│   ├── App.tsx           # Main application component
+│   ├── hook.ts           # Custom React hooks
+│   ├── index.css         # Global CSS styles
+│   ├── main.tsx          # Entry point of the React application
+│   ├── types.ts          # Global TypeScript type definitions
+│   └── vite-env.d.ts     # Vite environment type declarations
+├── .gitignore            # Git ignore file
 
-## 🛠 Installation
+```
+
+-----
+
+## ⚙️ Getting Started
 
 ```bash
-# 1. Clone the repo
-git clone https://github.com/your-username/library-frontend.git
-cd library-frontend
+# 1. Clone the repository
+git clone https://github.com/arman-miaa/BookWise
+cd BookWise
 
 # 2. Install dependencies
-npm install
+npm install # or pnpm install if you're using pnpm
 
-# 3. Start development server
+# 3. Run the development server
 npm run dev
 ```
 
-> ⚠️ Make sure your backend server is running at `http://localhost:5000`
+> 🔁 Make sure your backend is running at `http://localhost:5000`
 
----
+-----
 
-## 🧩 Folder Structure
 
-```bash
-src/
-├── components/        # Reusable UI components
-├── pages/             # Main route pages (Books, AddBook, BorrowSummary)
-├── redux/             # RTK setup & API slices
-├── routes/            # React Router setup
-├── types/             # Shared TypeScript types
-└── lib/               # Utility functions (e.g., classNames)
-```
+-----
 
----
+## 📌 Project Notes
 
-## 🔮 Future Enhancements
+> 📌 This is a public demo — no login or registration required.
+> All data is fetched and stored via a live Express + MongoDB backend.
 
-- 🧠 **Optimistic UI** for borrowing and editing books
-- 🔍 **Search bar** to filter books by title or author
-- 📅 **Due Date Tracker** to highlight overdue books
-- 👥 **Authentication** for admin-only access and book management
-- 📝 **Borrow history logs** with timestamps
-- 📱 **Mobile-optimized layout improvements**
-- 📊 **Dashboard view** for quick insights (e.g., most borrowed books)
-- **improving the validation system** - e.g. when creating a book with duplicate ISBN number, the form should give the user a message saying 'ISBN number cannot be duplicated.'
+-----
