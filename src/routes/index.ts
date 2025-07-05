@@ -7,10 +7,13 @@ import BorrowSummary from "@/pages/BorrowSummary";
 import MainLayout from "@/layout/MainLayout";
 import Home from "@/pages/Home";
 
+
+
 const router = createBrowserRouter([
     {
         path: '/',
         Component: MainLayout,
+       
         children: [
             {
                 index: true,
